@@ -84,16 +84,16 @@ Window::Window(QWidget *parent)
     QGroupBox *targetGroup = new QGroupBox(tr("目标价"));
     //[目标价1]
     QLabel *targetMinLabel = new QLabel(tr("目标价1(min):"));
-    targetMinEdit_ = new QLineEdit("0");
-    targetMinEdit_->setReadOnly(true);
-    targetMinEdit_->setAlignment(Qt::AlignRight);
-    targetMinEdit_->setMaxLength(15);
+    tOb1ValEdit_ = new QLineEdit("0");
+    tOb1ValEdit_->setReadOnly(true);
+    tOb1ValEdit_->setAlignment(Qt::AlignRight);
+    tOb1ValEdit_->setMaxLength(15);
     //[目标价2]
     QLabel *targetMaxLabel = new QLabel(tr("目标价2(max):"));
-    targetMaxEdit_ = new QLineEdit("0");
-    targetMaxEdit_->setReadOnly(true);
-    targetMaxEdit_->setAlignment(Qt::AlignRight);
-    targetMaxEdit_->setMaxLength(15);
+    tOb2ValEdit_ = new QLineEdit("0");
+    tOb2ValEdit_->setReadOnly(true);
+    tOb2ValEdit_->setAlignment(Qt::AlignRight);
+    tOb2ValEdit_->setMaxLength(15);
     //[最低价]
     QLabel *lowestValLabel = new QLabel(tr("请输入最低价:"));
     lowestValEdit_ = new QLineEdit("0");
@@ -103,9 +103,9 @@ Window::Window(QWidget *parent)
     //[]
     QGridLayout *targetLayout = new QGridLayout;
     targetLayout->addWidget(targetMinLabel, 0, 0);
-    targetLayout->addWidget(targetMinEdit_, 0, 1);
+    targetLayout->addWidget(tOb1ValEdit_, 0, 1);
     targetLayout->addWidget(targetMaxLabel, 1, 0);
-    targetLayout->addWidget(targetMaxEdit_, 1, 1);
+    targetLayout->addWidget(tOb2ValEdit_, 1, 1);
     targetLayout->addWidget(lowestValLabel, 2, 0);
     targetLayout->addWidget(lowestValEdit_, 2, 1);
     targetGroup->setLayout(targetLayout);
@@ -124,6 +124,7 @@ Window::Window(QWidget *parent)
     setWindowTitle(tr("[A游资-财富自由]"));
 }
 
+
 Window::~Window()
 {
 
@@ -137,7 +138,7 @@ void Window::targetClicked()
     double targetMinVal = 0,targetMaxVal = 0;
     targetMinVal = lowestVal*BR_OB1;
     targetMaxVal = lowestVal*BR_OB2;
-    targetMinEdit_->setText(QString::number(targetMinVal));
-    targetMaxEdit_->setText(QString::number(targetMaxVal));
+    tOb1ValEdit_->setText(QString::number(targetMinVal));
+    tOb2ValEdit_->setText(QString::number(targetMaxVal));
 }
 
