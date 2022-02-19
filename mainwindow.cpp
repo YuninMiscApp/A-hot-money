@@ -74,16 +74,23 @@
 #define BR_CB1 0.95
 #define BR_CB2 0.88
 
+//_edit_->setStyleSheet(_color_);\
 
-#define EDIT_FUNC(_edit_,_val_,_ro_,_maxlen_) do { \
+#define EDIT_FUNC(_edit_,_val_,_ro_,_maxlen_,_color_) do { \
     _edit_ = new QLineEdit(tr(_val_));  \
-    if(_ro_) _edit_->setReadOnly(true); \
+    if(_ro_) \
+    {\
+        _edit_->setReadOnly(true); \
+        _edit_->setStyleSheet("background-color:gray"); \
+    }\
+    _edit_->setStyleSheet(_color_);\
     _edit_->setAlignment(Qt::AlignRight); \
     _edit_->setMaxLength(_maxlen_);\
 }while(0)
 
-#define TARGET_LAYOUT_FUNC(_layout_,_lable_,_edit_,_row_) do { \
-    _layout_->addWidget(_lable_, _row_, 0); \
+#define TARGET_LAYOUT_FUNC(_layout_,_label_,_color_,_edit_,_row_) do { \
+    _label_->setStyleSheet(_color_);\
+    _layout_->addWidget(_label_, _row_, 0); \
     _layout_->addWidget(_edit_, _row_, 1);\
 }while(0)
 
@@ -91,39 +98,39 @@
 Window::Window(QWidget *parent)
     : QWidget(parent)
 {
-
     /*********************** targetGroup ************************/
     QGroupBox *targetGroup = new QGroupBox(tr("目标价"));
     //[目标价1]
     QLabel *targetMinLabel = new QLabel(tr("目标价1(min):"));
-    EDIT_FUNC(tOb1ValEdit_,"0",true,15);
+    EDIT_FUNC(tOb1ValEdit_,"0",true,15,"color:red;");
     //[目标价2]
     QLabel *targetMaxLabel = new QLabel(tr("目标价2(max):"));
-    EDIT_FUNC(tOb2ValEdit_,"0",true,15);
+    EDIT_FUNC(tOb2ValEdit_,"0",true,15,"color:purple;");
     //[暴跌价1]
     QLabel *fallVal1Label = new QLabel(tr("暴跌价1(F1):"));
-    EDIT_FUNC(tFall1Edit_,"0",true,15);
+    EDIT_FUNC(tFall1Edit_,"0",true,15,"color:aqua;");
     //[暴跌价2]
     QLabel *fallVal2Label = new QLabel(tr("暴跌价2(F2):"));
-    EDIT_FUNC(tFall2Edit_,"0",true,15);
+    EDIT_FUNC(tFall2Edit_,"0",true,15,"color:green;");
     //[暴跌价3]
     QLabel *fallVal3Label = new QLabel(tr("暴跌价3(F3):"));
-    EDIT_FUNC(tFall3Edit_,"0",true,15);
+    EDIT_FUNC(tFall3Edit_,"0",true,15,"color:blue;");
 
     //[最低价]
     QLabel *lowestValLabel = new QLabel(tr("请输入最低价:"));
-    EDIT_FUNC(lowestValEdit_,"0",false,15);
+    EDIT_FUNC(lowestValEdit_,"",false,15,"color:orange;");
 
     //[-----------------]
     QGridLayout *targetLayout = new QGridLayout;
-    TARGET_LAYOUT_FUNC(targetLayout,targetMinLabel,tOb1ValEdit_,0);
-    TARGET_LAYOUT_FUNC(targetLayout,targetMaxLabel,tOb2ValEdit_,1);
-    TARGET_LAYOUT_FUNC(targetLayout,fallVal1Label,tFall1Edit_,2);
-    TARGET_LAYOUT_FUNC(targetLayout,fallVal2Label,tFall2Edit_,3);
-    TARGET_LAYOUT_FUNC(targetLayout,fallVal3Label,tFall3Edit_,4);
-    TARGET_LAYOUT_FUNC(targetLayout,lowestValLabel,lowestValEdit_,5);
+    TARGET_LAYOUT_FUNC(targetLayout,targetMinLabel,"color:red;",tOb1ValEdit_,0);
+    TARGET_LAYOUT_FUNC(targetLayout,targetMaxLabel,"color:purple;",tOb2ValEdit_,1);
+    TARGET_LAYOUT_FUNC(targetLayout,fallVal1Label,"color:aqua;",tFall1Edit_,2);
+    TARGET_LAYOUT_FUNC(targetLayout,fallVal2Label,"color:green;",tFall2Edit_,3);
+    TARGET_LAYOUT_FUNC(targetLayout,fallVal3Label,"color:blue;",tFall3Edit_,4);
+    TARGET_LAYOUT_FUNC(targetLayout,lowestValLabel,"color:orange;",lowestValEdit_,5);
     targetGroup->setLayout(targetLayout);
-    /*********************** targetGroup ************************/
+
+    /*********************** 按键事件 ************************/
     //[按键]
     QPushButton *targetButton = new QPushButton(tr("计算"));
     //[连接]
