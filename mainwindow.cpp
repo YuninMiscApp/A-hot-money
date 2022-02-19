@@ -39,9 +39,40 @@
 ****************************************************************************/
 #include <QtWidgets>
 
-
 #include "mainwindow.h"
 
+/***********************************
+ * 目标价：T
+ * 下跌系数：fall
+ * 上涨系数：rise
+ * 双头系数：double
+ * 爆发系数：outburst
+ * 回调系数: callback
+ ********************************
+ * T(fall1) = Val * 0.7
+ * T(fall2) = Val * 0.49
+ * T(fall3) = Val * 0.343
+ * T(r1) = Val * 1.7
+ * T(r2) = Val * 2.2
+ * T(OB1) = Val * 4.45
+ * T(OB2) = Val * 5.76
+ * T(CB1)=Val * 0.95
+ * T(CB2)=Val * 0.88
+***********************************/
+
+#define BR_FALL1 0.7
+#define BR_FALL2 0.49
+#define BR_FALL3 0.343
+#define BR_FALL4 0.168
+
+#define BR_RISE1 1.7
+#define BR_RISE2 2.2
+
+#define BR_OB1 4.45
+#define BR_OB2 5.76
+
+#define BR_CB1 0.95
+#define BR_CB2 0.88
 
 
 //! [0]
@@ -53,30 +84,30 @@ Window::Window(QWidget *parent)
     QGroupBox *targetGroup = new QGroupBox(tr("目标价"));
     //[目标价1]
     QLabel *targetMinLabel = new QLabel(tr("目标价1(min):"));
-    QLineEdit *targetMinEdit = new QLineEdit("0");
-    targetMinEdit->setReadOnly(true);
-    targetMinEdit->setAlignment(Qt::AlignRight);
-    targetMinEdit->setMaxLength(15);
+    targetMinEdit_ = new QLineEdit("0");
+    targetMinEdit_->setReadOnly(true);
+    targetMinEdit_->setAlignment(Qt::AlignRight);
+    targetMinEdit_->setMaxLength(15);
     //[目标价2]
     QLabel *targetMaxLabel = new QLabel(tr("目标价2(max):"));
-    QLineEdit *targetMaxEdit = new QLineEdit("0");
-    targetMaxEdit->setReadOnly(true);
-    targetMaxEdit->setAlignment(Qt::AlignRight);
-    targetMaxEdit->setMaxLength(15);
+    targetMaxEdit_ = new QLineEdit("0");
+    targetMaxEdit_->setReadOnly(true);
+    targetMaxEdit_->setAlignment(Qt::AlignRight);
+    targetMaxEdit_->setMaxLength(15);
     //[最低价]
     QLabel *lowestValLabel = new QLabel(tr("请输入最低价:"));
-    QLineEdit *lowestValEdit = new QLineEdit("0");
-    lowestValEdit->setAlignment(Qt::AlignRight);
-    lowestValEdit->setMaxLength(15);
+    lowestValEdit_ = new QLineEdit("0");
+    lowestValEdit_->setAlignment(Qt::AlignRight);
+    lowestValEdit_->setMaxLength(15);
 
     //[]
     QGridLayout *targetLayout = new QGridLayout;
     targetLayout->addWidget(targetMinLabel, 0, 0);
-    targetLayout->addWidget(targetMinEdit, 0, 1);
+    targetLayout->addWidget(targetMinEdit_, 0, 1);
     targetLayout->addWidget(targetMaxLabel, 1, 0);
-    targetLayout->addWidget(targetMaxEdit, 1, 1);
+    targetLayout->addWidget(targetMaxEdit_, 1, 1);
     targetLayout->addWidget(lowestValLabel, 2, 0);
-    targetLayout->addWidget(lowestValEdit, 2, 1);
+    targetLayout->addWidget(lowestValEdit_, 2, 1);
     targetGroup->setLayout(targetLayout);
     /*********************** targetGroup ************************/
     //[按键]
@@ -101,6 +132,12 @@ Window::~Window()
 
 void Window::targetClicked()
 {
-    QMessageBox::about(NULL, "A游资", "发财-虎虎生威!!!");
+    //QMessageBox::about(NULL, "A游资", "发财-虎虎生威!!!");
+    double lowestVal = lowestValEdit_->text().toDouble();
+    double targetMinVal = 0,targetMaxVal = 0;
+    targetMinVal = lowestVal*BR_OB1;
+    targetMaxVal = lowestVal*BR_OB2;
+    targetMinEdit_->setText(QString::number(targetMinVal));
+    targetMaxEdit_->setText(QString::number(targetMaxVal));
 }
 

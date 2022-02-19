@@ -66,8 +66,9 @@ private slots:
     void targetClicked();
 
 private:
-    QToolButton *createButton(const QString &text, const char *member);
-
+    QLineEdit *targetMinEdit_;
+    QLineEdit *targetMaxEdit_;
+    QLineEdit *lowestValEdit_;
 };
 //! [0]
 
