@@ -74,7 +74,6 @@
 #define BR_CB1 0.95
 #define BR_CB2 0.88
 
-//_edit_->setStyleSheet(_color_);\
 
 #define EDIT_FUNC(_edit_,_val_,_ro_,_maxlen_,_color_) do { \
     _edit_ = new QLineEdit(tr(_val_));  \
@@ -100,35 +99,73 @@ Window::Window(QWidget *parent)
 {
     /*********************** targetGroup ************************/
     QGroupBox *targetGroup = new QGroupBox(tr("目标价"));
-    //[目标价1]
-    QLabel *targetMinLabel = new QLabel(tr("目标价1(min):"));
-    EDIT_FUNC(tOb1ValEdit_,"0",true,15,"color:red;");
-    //[目标价2]
-    QLabel *targetMaxLabel = new QLabel(tr("目标价2(max):"));
-    EDIT_FUNC(tOb2ValEdit_,"0",true,15,"color:purple;");
-    //[暴跌价1]
-    QLabel *fallVal1Label = new QLabel(tr("暴跌价1(F1):"));
-    EDIT_FUNC(tFall1Edit_,"0",true,15,"color:aqua;");
-    //[暴跌价2]
-    QLabel *fallVal2Label = new QLabel(tr("暴跌价2(F2):"));
-    EDIT_FUNC(tFall2Edit_,"0",true,15,"color:green;");
-    //[暴跌价3]
-    QLabel *fallVal3Label = new QLabel(tr("暴跌价3(F3):"));
-    EDIT_FUNC(tFall3Edit_,"0",true,15,"color:blue;");
+    {
+        //[目标价1]
+        QLabel *targetMinLabel = new QLabel(tr("目标价1(min):"));
+        EDIT_FUNC(tOb1ValEdit_,"0",true,15,"color:red;");
+        //[目标价2]
+        QLabel *targetMaxLabel = new QLabel(tr("目标价2(max):"));
+        EDIT_FUNC(tOb2ValEdit_,"0",true,15,"color:purple;");
+        //[暴跌价1]
+        QLabel *fallVal1Label = new QLabel(tr("暴跌价1(F1):"));
+        EDIT_FUNC(tFall1Edit_,"0",true,15,"color:aqua;");
+        //[暴跌价2]
+        QLabel *fallVal2Label = new QLabel(tr("暴跌价2(F2):"));
+        EDIT_FUNC(tFall2Edit_,"0",true,15,"color:green;");
+        //[暴跌价3]
+        QLabel *fallVal3Label = new QLabel(tr("暴跌价3(F3):"));
+        EDIT_FUNC(tFall3Edit_,"0",true,15,"color:blue;");
 
-    //[最低价]
-    QLabel *lowestValLabel = new QLabel(tr("请输入最低价:"));
-    EDIT_FUNC(lowestValEdit_,"",false,15,"color:orange;");
+        //[最低价]
+        QLabel *lowestValLabel = new QLabel(tr("请输入最低价:"));
+        EDIT_FUNC(lowestValEdit_,"",false,15,"color:orange;");
 
-    //[-----------------]
-    QGridLayout *targetLayout = new QGridLayout;
-    TARGET_LAYOUT_FUNC(targetLayout,targetMinLabel,"color:red;",tOb1ValEdit_,0);
-    TARGET_LAYOUT_FUNC(targetLayout,targetMaxLabel,"color:purple;",tOb2ValEdit_,1);
-    TARGET_LAYOUT_FUNC(targetLayout,fallVal1Label,"color:aqua;",tFall1Edit_,2);
-    TARGET_LAYOUT_FUNC(targetLayout,fallVal2Label,"color:green;",tFall2Edit_,3);
-    TARGET_LAYOUT_FUNC(targetLayout,fallVal3Label,"color:blue;",tFall3Edit_,4);
-    TARGET_LAYOUT_FUNC(targetLayout,lowestValLabel,"color:orange;",lowestValEdit_,5);
-    targetGroup->setLayout(targetLayout);
+        //[-----------------]
+        QGridLayout *targetLayout = new QGridLayout;
+        TARGET_LAYOUT_FUNC(targetLayout,targetMinLabel,"color:red;",tOb1ValEdit_,0);
+        TARGET_LAYOUT_FUNC(targetLayout,targetMaxLabel,"color:purple;",tOb2ValEdit_,1);
+        TARGET_LAYOUT_FUNC(targetLayout,fallVal1Label,"color:aqua;",tFall1Edit_,2);
+        TARGET_LAYOUT_FUNC(targetLayout,fallVal2Label,"color:green;",tFall2Edit_,3);
+        TARGET_LAYOUT_FUNC(targetLayout,fallVal3Label,"color:blue;",tFall3Edit_,4);
+        TARGET_LAYOUT_FUNC(targetLayout,lowestValLabel,"color:orange;",lowestValEdit_,5);
+        targetGroup->setLayout(targetLayout);
+    }
+
+    /*********************** 当前价 ************************/
+    QGroupBox *currentGroup = new QGroupBox(tr("当前价"));
+    {
+        //[上升价1]
+        QLabel *r1ValLabel = new QLabel(tr("上升价1(R1):"));
+        EDIT_FUNC(tR1ValEdit_,"0",true,15,"color:red;");
+        //[上升价2]
+        QLabel *r2ValLabel = new QLabel(tr("上升价2(R2):"));
+        EDIT_FUNC(tR2ValEdit_,"0",true,15,"color:purple;");
+
+        //[回调价1]
+        QLabel *cb1ValLabel = new QLabel(tr("回调价1(CB1):"));
+        EDIT_FUNC(tCb1ValEdit_,"0",true,15,"color:aqua;");
+        //[回调价2]
+        QLabel *cb2ValLabel = new QLabel(tr("回调价2(CB2):"));
+        EDIT_FUNC(tCb2ValEdit_,"0",true,15,"color:green;");
+
+        //[回落价0]
+        QLabel *fall0ValLabel = new QLabel(tr("回落价0(Fall0):"));
+        EDIT_FUNC(tFall0ValEdit_,"0",true,15,"color:blue;");
+
+        //[当前价]
+        QLabel *curValLabel = new QLabel(tr("请输入当前价:"));
+        EDIT_FUNC(tCurrentValEdit_,"",false,15,"color:orange;");
+
+        //[-----------------]
+        QGridLayout *currentLayout = new QGridLayout;
+        TARGET_LAYOUT_FUNC(currentLayout,r1ValLabel,"color:red;",tR1ValEdit_,0);
+        TARGET_LAYOUT_FUNC(currentLayout,r2ValLabel,"color:purple;",tR2ValEdit_,1);
+        TARGET_LAYOUT_FUNC(currentLayout,cb1ValLabel,"color:aqua;",tCb1ValEdit_,2);
+        TARGET_LAYOUT_FUNC(currentLayout,cb2ValLabel,"color:green;",tCb2ValEdit_,3);
+        TARGET_LAYOUT_FUNC(currentLayout,fall0ValLabel,"color:blue;",tFall0ValEdit_,4);
+        TARGET_LAYOUT_FUNC(currentLayout,curValLabel,"color:orange;",tCurrentValEdit_,5);
+        currentGroup->setLayout(currentLayout);
+    }
 
     /*********************** 按键事件 ************************/
     //[按键]
@@ -138,11 +175,14 @@ Window::Window(QWidget *parent)
     /*************************** QGridLayout ********************/
     QGridLayout *mainLayout = new QGridLayout;
     mainLayout->addWidget(targetGroup, 0, 0);
+    mainLayout->addWidget(currentGroup, 0, 1);
     mainLayout->addWidget(targetButton, 1, 1);
+
     setLayout(mainLayout);
 
     // ///////////////////////////
-    setWindowTitle(tr("[A游资-财富自由]"));
+    setWindowTitle(tr("[A游资-财富自由](1.7,2.2,4.45,5.76;0.95,0.88,0.7,0.49,0.343,0.168)"));
+    this->resize(600,300);
 }
 
 
@@ -155,9 +195,10 @@ Window::~Window()
 void Window::targetClicked()
 {
     //QMessageBox::about(NULL, "A游资", "发财-虎虎生威!!!");
+    /********************************************************/
     double lowestVal = lowestValEdit_->text().toDouble();
     double tOb1 = 0,tOb2 = 0;
-     double tFall1 = 0,tFall2 = 0,tFall3 = 0;
+    double tFall1 = 0,tFall2 = 0,tFall3 = 0;
     tOb1 = lowestVal*BR_OB1;
     tOb2 = lowestVal*BR_OB2;
     tFall1 = ((tOb1+tOb2)/2)*BR_FALL1;
@@ -168,5 +209,20 @@ void Window::targetClicked()
     tFall1Edit_->setText(QString::number(tFall1));
     tFall2Edit_->setText(QString::number(tFall2));
     tFall3Edit_->setText(QString::number(tFall3));
+    /********************************************************/
+    double curVal = tCurrentValEdit_->text().toDouble();
+    double curR1Val = 0,curR2Val = 0;
+    double curCb1Val = 0,curCb2Val = 0,curFall0Val = 0;
+    curR1Val = curVal*BR_RISE1;
+    curR2Val = curVal*BR_RISE2;
+    curCb1Val = curVal*BR_CB1;
+    curCb2Val = curVal*BR_CB2;
+    curFall0Val = curVal*BR_FALL1;
+    tR1ValEdit_->setText(QString::number(curR1Val));
+    tR2ValEdit_->setText(QString::number(curR2Val));
+    tCb1ValEdit_->setText(QString::number(curCb1Val));
+    tCb2ValEdit_->setText(QString::number(curCb2Val));
+    tFall0ValEdit_->setText(QString::number(curFall0Val));
+    /********************************************************/
 }
 

@@ -80,8 +80,10 @@ private:
 
     QLineEdit *tR1ValEdit_;
     QLineEdit *tR2ValEdit_;
-    QLineEdit *tCablback1ValEdit_;
-    QLineEdit *tCablback12ValEdit_;
+
+    QLineEdit *tCb1ValEdit_;
+    QLineEdit *tCb2ValEdit_;
+    QLineEdit *tFall0ValEdit_;
 
 };
 //! [0]
