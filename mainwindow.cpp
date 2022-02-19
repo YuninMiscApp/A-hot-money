@@ -97,6 +97,7 @@
 Window::Window(QWidget *parent)
     : QWidget(parent)
 {
+    this->setWindowIcon(QIcon("taiji.ico"));
     /*********************** targetGroup ************************/
     QGroupBox *targetGroup = new QGroupBox(tr("目标价"));
     {
@@ -183,6 +184,7 @@ Window::Window(QWidget *parent)
     // ///////////////////////////
     setWindowTitle(tr("[A游资-财富自由](1.7,2.2,4.45,5.76;0.95,0.88,0.7,0.49,0.343,0.168)"));
     this->resize(600,300);
+
 }
 
 
