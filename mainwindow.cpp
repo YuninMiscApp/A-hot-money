@@ -75,6 +75,18 @@
 #define BR_CB2 0.88
 
 
+#define EDIT_FUNC(_edit_,_val_,_ro_,_maxlen_) do { \
+    _edit_ = new QLineEdit(tr(_val_));  \
+    if(_ro_) _edit_->setReadOnly(true); \
+    _edit_->setAlignment(Qt::AlignRight); \
+    _edit_->setMaxLength(_maxlen_);\
+}while(0)
+
+#define TARGET_LAYOUT_FUNC(_layout_,_lable_,_edit_,_row_) do { \
+    _layout_->addWidget(_lable_, _row_, 0); \
+    _layout_->addWidget(_edit_, _row_, 1);\
+}while(0)
+
 //! [0]
 Window::Window(QWidget *parent)
     : QWidget(parent)
@@ -84,30 +96,32 @@ Window::Window(QWidget *parent)
     QGroupBox *targetGroup = new QGroupBox(tr("目标价"));
     //[目标价1]
     QLabel *targetMinLabel = new QLabel(tr("目标价1(min):"));
-    tOb1ValEdit_ = new QLineEdit("0");
-    tOb1ValEdit_->setReadOnly(true);
-    tOb1ValEdit_->setAlignment(Qt::AlignRight);
-    tOb1ValEdit_->setMaxLength(15);
+    EDIT_FUNC(tOb1ValEdit_,"0",true,15);
     //[目标价2]
     QLabel *targetMaxLabel = new QLabel(tr("目标价2(max):"));
-    tOb2ValEdit_ = new QLineEdit("0");
-    tOb2ValEdit_->setReadOnly(true);
-    tOb2ValEdit_->setAlignment(Qt::AlignRight);
-    tOb2ValEdit_->setMaxLength(15);
+    EDIT_FUNC(tOb2ValEdit_,"0",true,15);
+    //[暴跌价1]
+    QLabel *fallVal1Label = new QLabel(tr("暴跌价1(F1):"));
+    EDIT_FUNC(tFall1Edit_,"0",true,15);
+    //[暴跌价2]
+    QLabel *fallVal2Label = new QLabel(tr("暴跌价2(F2):"));
+    EDIT_FUNC(tFall2Edit_,"0",true,15);
+    //[暴跌价3]
+    QLabel *fallVal3Label = new QLabel(tr("暴跌价3(F3):"));
+    EDIT_FUNC(tFall3Edit_,"0",true,15);
+
     //[最低价]
     QLabel *lowestValLabel = new QLabel(tr("请输入最低价:"));
-    lowestValEdit_ = new QLineEdit("0");
-    lowestValEdit_->setAlignment(Qt::AlignRight);
-    lowestValEdit_->setMaxLength(15);
+    EDIT_FUNC(lowestValEdit_,"0",false,15);
 
-    //[]
+    //[-----------------]
     QGridLayout *targetLayout = new QGridLayout;
-    targetLayout->addWidget(targetMinLabel, 0, 0);
-    targetLayout->addWidget(tOb1ValEdit_, 0, 1);
-    targetLayout->addWidget(targetMaxLabel, 1, 0);
-    targetLayout->addWidget(tOb2ValEdit_, 1, 1);
-    targetLayout->addWidget(lowestValLabel, 2, 0);
-    targetLayout->addWidget(lowestValEdit_, 2, 1);
+    TARGET_LAYOUT_FUNC(targetLayout,targetMinLabel,tOb1ValEdit_,0);
+    TARGET_LAYOUT_FUNC(targetLayout,targetMaxLabel,tOb2ValEdit_,1);
+    TARGET_LAYOUT_FUNC(targetLayout,fallVal1Label,tFall1Edit_,2);
+    TARGET_LAYOUT_FUNC(targetLayout,fallVal2Label,tFall2Edit_,3);
+    TARGET_LAYOUT_FUNC(targetLayout,fallVal3Label,tFall3Edit_,4);
+    TARGET_LAYOUT_FUNC(targetLayout,lowestValLabel,lowestValEdit_,5);
     targetGroup->setLayout(targetLayout);
     /*********************** targetGroup ************************/
     //[按键]
@@ -135,10 +149,17 @@ void Window::targetClicked()
 {
     //QMessageBox::about(NULL, "A游资", "发财-虎虎生威!!!");
     double lowestVal = lowestValEdit_->text().toDouble();
-    double targetMinVal = 0,targetMaxVal = 0;
-    targetMinVal = lowestVal*BR_OB1;
-    targetMaxVal = lowestVal*BR_OB2;
-    tOb1ValEdit_->setText(QString::number(targetMinVal));
-    tOb2ValEdit_->setText(QString::number(targetMaxVal));
+    double tOb1 = 0,tOb2 = 0;
+     double tFall1 = 0,tFall2 = 0,tFall3 = 0;
+    tOb1 = lowestVal*BR_OB1;
+    tOb2 = lowestVal*BR_OB2;
+    tFall1 = ((tOb1+tOb2)/2)*BR_FALL1;
+    tFall2 = ((tOb1+tOb2)/2)*BR_FALL2;
+    tFall3 = ((tOb1+tOb2)/2)*BR_FALL3;
+    tOb1ValEdit_->setText(QString::number(tOb1));
+    tOb2ValEdit_->setText(QString::number(tOb2));
+    tFall1Edit_->setText(QString::number(tFall1));
+    tFall2Edit_->setText(QString::number(tFall2));
+    tFall3Edit_->setText(QString::number(tFall3));
 }
 
