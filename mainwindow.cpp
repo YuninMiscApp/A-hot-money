@@ -40,6 +40,7 @@
 #include <QtWidgets>
 
 #include "mainwindow.h"
+#include "tableWindow.h"
 
 /***********************************
  * 目标价：T
@@ -92,6 +93,8 @@
     _layout_->addWidget(_label_, _row_, 0); \
     _layout_->addWidget(_edit_, _row_, 1);\
 }while(0)
+
+
 
 //! [0]
 Window::Window(QWidget *parent)
@@ -187,11 +190,20 @@ Window::Window(QWidget *parent)
     QPushButton *targetButton = new QPushButton(tr("计算"));
     //[连接]
     connect(targetButton, SIGNAL(clicked()), this, SLOT(targetClicked()));
+
+    /*********************** SQL表格 ************************/
+    tableWindow *tableWin = new tableWindow;
+    QGridLayout *sqlLayout = new QGridLayout;
+    sqlLayout->addWidget(tableWin);
+
+    QGroupBox *sqlGroup = new QGroupBox(tr("数据库"));
+    sqlGroup->setLayout(sqlLayout);
     /*************************** QGridLayout ********************/
     QGridLayout *mainLayout = new QGridLayout;
     mainLayout->addWidget(targetGroup, 0, 0);
     mainLayout->addWidget(currentGroup, 0, 1);
-    mainLayout->addWidget(targetButton, 1, 1);
+    mainLayout->addWidget(targetButton, 0, 2);
+    mainLayout->addWidget(sqlGroup, 1, 0);
 
     setLayout(mainLayout);
 

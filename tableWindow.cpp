@@ -88,6 +88,7 @@ QTableView *tableWindow::createView(QSqlTableModel *model, const QString &title 
 tableWindow::tableWindow()
 {
     model_ = NULL;
+    show();
 }
 
 int tableWindow::show(void)
@@ -96,7 +97,7 @@ int tableWindow::show(void)
         return -1;
     model_ = new QSqlTableModel;
     initializeModel(model_);
-    view_ = createView(model_, QObject::tr("Table Model (View 1)"));
+    view_ = createView(model_, QObject::tr("数据库"));
     view_->resize(800,600);
     view_->show();
     return 0;

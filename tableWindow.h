@@ -12,7 +12,7 @@
 
 
 //! [0]
-class tableWindow : public QObject
+class tableWindow : public QWidget
 {
     Q_OBJECT
 
@@ -20,7 +20,7 @@ public:
     tableWindow();
     ~tableWindow();
 
-    int show(void);
+    int show();
 private:
     bool createConnection();
     void initializeModel(QSqlTableModel *model);
