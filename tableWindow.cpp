@@ -83,25 +83,22 @@ QTableView *tableWindow::createView(QSqlTableModel *model, const QString &title 
     return view;
 }
 
-
+QTableView *tableWindow::getView()
+{
+    return view_;
+}
 
 tableWindow::tableWindow()
 {
-    model_ = NULL;
-    show();
-}
-
-int tableWindow::show(void)
-{
     if (!createConnection())
-        return -1;
+        return ;
     model_ = new QSqlTableModel;
     initializeModel(model_);
     view_ = createView(model_, QObject::tr("数据库"));
-    view_->resize(800,600);
-    view_->show();
-    return 0;
+
 }
+
+
 
 tableWindow::~tableWindow()
 {

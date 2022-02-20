@@ -12,15 +12,15 @@
 
 
 //! [0]
-class tableWindow : public QWidget
+class tableWindow : public QObject
 {
     Q_OBJECT
 
 public:
     tableWindow();
     ~tableWindow();
+    QTableView *getView();
 
-    int show();
 private:
     bool createConnection();
     void initializeModel(QSqlTableModel *model);

@@ -194,7 +194,7 @@ Window::Window(QWidget *parent)
     /*********************** SQL表格 ************************/
     tableWindow *tableWin = new tableWindow;
     QGridLayout *sqlLayout = new QGridLayout;
-    sqlLayout->addWidget(tableWin);
+    sqlLayout->addWidget(tableWin->getView());
 
     QGroupBox *sqlGroup = new QGroupBox(tr("数据库"));
     sqlGroup->setLayout(sqlLayout);
@@ -203,13 +203,13 @@ Window::Window(QWidget *parent)
     mainLayout->addWidget(targetGroup, 0, 0);
     mainLayout->addWidget(currentGroup, 0, 1);
     mainLayout->addWidget(targetButton, 0, 2);
-    mainLayout->addWidget(sqlGroup, 1, 0);
+    mainLayout->addWidget(sqlGroup, 1, 0,10,10);
 
     setLayout(mainLayout);
 
     // ///////////////////////////
     setWindowTitle(tr("[A游资-财富自由](1.7,2.2,4.45,5.76;0.95,0.88,0.7,0.49,0.343,0.168)"));
-    this->resize(600,300);
+    this->resize(800,600);
 
 }
 
