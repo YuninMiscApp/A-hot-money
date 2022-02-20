@@ -22,11 +22,11 @@ bool tableWindow::createConnection()
     QSqlQuery query;
     query.exec("create table person (id int primary key, "
                "firstname varchar(20), lastname varchar(20))");
-    query.exec("insert into person values(101, 'Danny', 'Young')");
-    query.exec("insert into person values(102, 'Christine', 'Holand')");
-    query.exec("insert into person values(103, 'Lars', 'Gordon')");
-    query.exec("insert into person values(104, 'Roberto', 'Robitaille')");
-    query.exec("insert into person values(105, 'Maria', 'Papadopoulos')");
+    query.exec("insert into person values(000807, '云铝股份', '上升')");
+    query.exec("insert into person values(000933, '神火股份', '上升')");
+    query.exec("insert into person values(000983, '山西焦煤', '上升')");
+    query.exec("insert into person values(600111, '北方稀土', '下跌')");
+    query.exec("insert into person values(601800, '中国交建', '高位横盘')");
 
     query.exec("create table items (id int primary key,"
                                              "imagefile int,"
@@ -70,9 +70,11 @@ void tableWindow::initializeModel(QSqlTableModel *model)
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->select();
 
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("First name"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Last name"));
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("股票代码"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("名称"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("趋势"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("请输入最低价:"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("请输入当前价:"));
 }
 
 QTableView *tableWindow::createView(QSqlTableModel *model, const QString &title = "")
