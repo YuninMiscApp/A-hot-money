@@ -208,7 +208,7 @@ Window::Window(QWidget *parent)
     setLayout(mainLayout);
 
     // ///////////////////////////
-    setWindowTitle(tr("[A游资-财富自由](1.7,2.2,4.45,5.76;0.95,0.88,0.7,0.49,0.343,0.168)"));
+    setWindowTitle(tr("[A游资-财富的缔造者](1.7,2.2,4.45,5.76;0.95,0.88,0.7,0.49,0.343,0.168)"));
     this->resize(800,600);
 
 }
