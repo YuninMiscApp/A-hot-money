@@ -22,7 +22,7 @@ bool tableWindow::createConnection()
     QSqlQuery query;
     query.exec("create table person (id int primary key, "
                "firstname varchar(20), lastname varchar(20))");
-    query.exec("insert into person values('趋势', '情绪', '时间')");
+    query.exec("insert into person values('大盘普跌的情况下,个股的技术指标大概率会失效', '恐慌指数', '把结果交给时间,物极必反')");
 
 
     query.exec("create table items (id int primary key,"
@@ -67,9 +67,9 @@ void tableWindow::initializeModel(QSqlTableModel *model)
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->select();
 
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("要素一"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("要素二"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("要素三"));
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("趋势"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("情绪"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("时间"));
 }
 
 QTableView *tableWindow::createView(QSqlTableModel *model, const QString &title = "")
