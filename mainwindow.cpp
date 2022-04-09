@@ -105,19 +105,19 @@ Window::Window(QWidget *parent)
     QGroupBox *targetGroup = new QGroupBox(tr("目标价"));
     {
         //[目标价1]
-        QLabel *targetMinLabel = new QLabel(tr("目标价1(min):"));
+        QLabel *targetMinLabel = new QLabel(tr("目标价1(4.45):"));
         EDIT_FUNC(tOb1ValEdit_,"0",true,15,"color:red;");
         //[目标价2]
-        QLabel *targetMaxLabel = new QLabel(tr("目标价2(max):"));
+        QLabel *targetMaxLabel = new QLabel(tr("目标价2(5.76):"));
         EDIT_FUNC(tOb2ValEdit_,"0",true,15,"color:purple;");
         //[暴跌价1]
-        QLabel *fallVal1Label = new QLabel(tr("暴跌价1(F1):"));
+        QLabel *fallVal1Label = new QLabel(tr("暴跌价1(0.7):"));
         EDIT_FUNC(tFall1Edit_,"0",true,15,"color:aqua;");
         //[暴跌价2]
-        QLabel *fallVal2Label = new QLabel(tr("暴跌价2(F2):"));
+        QLabel *fallVal2Label = new QLabel(tr("暴跌价2(0.49):"));
         EDIT_FUNC(tFall2Edit_,"0",true,15,"color:green;");
         //[暴跌价3]
-        QLabel *fallVal3Label = new QLabel(tr("暴跌价3(F3):"));
+        QLabel *fallVal3Label = new QLabel(tr("暴跌价3(0.343):"));
         EDIT_FUNC(tFall3Edit_,"0",true,15,"color:blue;");
 
         //[最低价]
@@ -139,30 +139,30 @@ Window::Window(QWidget *parent)
     QGroupBox *currentGroup = new QGroupBox(tr("当前价"));
     {
         //[上升价1]
-        QLabel *r1ValLabel = new QLabel(tr("上升价1(R1):"));
+        QLabel *r1ValLabel = new QLabel(tr("上升价1(1.7):"));
         EDIT_FUNC(tR1ValEdit_,"0",true,15,"color:red;");
         //[上升价2]
-        QLabel *r2ValLabel = new QLabel(tr("上升价2(R2):"));
+        QLabel *r2ValLabel = new QLabel(tr("上升价2(2.2):"));
         EDIT_FUNC(tR2ValEdit_,"0",true,15,"color:purple;");
 
         //[回调价1]
-        QLabel *cb1ValLabel = new QLabel(tr("回调价1(CB1):"));
+        QLabel *cb1ValLabel = new QLabel(tr("回调价1(0.95):"));
         EDIT_FUNC(tCb1ValEdit_,"0",true,15,"color:aqua;");
         //[回调价2]
-        QLabel *cb2ValLabel = new QLabel(tr("回调价2(CB2):"));
+        QLabel *cb2ValLabel = new QLabel(tr("回调价2(0.88):"));
         EDIT_FUNC(tCb2ValEdit_,"0",true,15,"color:green;");
 
         //[回落价0]
-        QLabel *fall0ValLabel = new QLabel(tr("回落价0(Fall0):"));
+        QLabel *fall0ValLabel = new QLabel(tr("回落价0(0.7):"));
         EDIT_FUNC(tFall0ValEdit_,"0",true,15,"color:blue;");
         //[回落价1]
-        QLabel *fall1ValLabel = new QLabel(tr("回落价1(Fall1):"));
+        QLabel *fall1ValLabel = new QLabel(tr("回落价1(0.49):"));
         EDIT_FUNC(tFall1ValEdit_,"0",true,15,"color:blue;");
         //[回落价2]
-        QLabel *fall2ValLabel = new QLabel(tr("回落价2(Fall2):"));
+        QLabel *fall2ValLabel = new QLabel(tr("回落价2(0.343):"));
         EDIT_FUNC(tFall2ValEdit_,"0",true,15,"color:blue;");
         //[回落价3]
-        QLabel *fall3ValLabel = new QLabel(tr("回落价3(Fall3):"));
+        QLabel *fall3ValLabel = new QLabel(tr("回落价3(0.168):"));
         EDIT_FUNC(tFall3ValEdit_,"0",true,15,"color:blue;");
 
         //[当前价]
