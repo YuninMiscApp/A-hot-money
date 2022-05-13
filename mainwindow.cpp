@@ -61,9 +61,10 @@
  * T(CB2)=Val * 0.88
 ***********************************/
 
-#define BR_FALL1 0.7
-#define BR_FALL2 0.49
-#define BR_FALL3 0.343
+#define BR_FALL0 0.7
+#define BR_FALL1 0.49
+#define BR_FALL2 0.343
+#define BR_FALL3 0.24
 #define BR_FALL4 0.168
 
 #define BR_RISE1 1.7
@@ -162,8 +163,11 @@ Window::Window(QWidget *parent)
         QLabel *fall2ValLabel = new QLabel(tr("回落价2(0.343):"));
         EDIT_FUNC(tFall2ValEdit_,"0",true,15,"color:blue;");
         //[回落价3]
-        QLabel *fall3ValLabel = new QLabel(tr("回落价3(0.168):"));
+        QLabel *fall3ValLabel = new QLabel(tr("回落价3(0.24):"));
         EDIT_FUNC(tFall3ValEdit_,"0",true,15,"color:blue;");
+        //[回落价4]
+        QLabel *fall4ValLabel = new QLabel(tr("回落价4(0.168):"));
+        EDIT_FUNC(tFall4ValEdit_,"0",true,15,"color:blue;");
 
         //[当前价]
         QLabel *curValLabel = new QLabel(tr("请输入当前价:"));
@@ -180,8 +184,9 @@ Window::Window(QWidget *parent)
         TARGET_LAYOUT_FUNC(currentLayout,fall1ValLabel,"color:blue;",tFall1ValEdit_,5);
         TARGET_LAYOUT_FUNC(currentLayout,fall2ValLabel,"color:blue;",tFall2ValEdit_,6);
         TARGET_LAYOUT_FUNC(currentLayout,fall3ValLabel,"color:blue;",tFall3ValEdit_,7);
+        TARGET_LAYOUT_FUNC(currentLayout,fall4ValLabel,"color:blue;",tFall4ValEdit_,8);
 
-        TARGET_LAYOUT_FUNC(currentLayout,curValLabel,"color:orange;",tCurrentValEdit_,8);
+        TARGET_LAYOUT_FUNC(currentLayout,curValLabel,"color:orange;",tCurrentValEdit_,9);
         currentGroup->setLayout(currentLayout);
     }
 
@@ -229,9 +234,9 @@ void Window::targetClicked()
     double tFall1 = 0,tFall2 = 0,tFall3 = 0;
     tOb1 = lowestVal*BR_OB1;
     tOb2 = lowestVal*BR_OB2;
-    tFall1 = ((tOb1+tOb2)/2)*BR_FALL1;
-    tFall2 = ((tOb1+tOb2)/2)*BR_FALL2;
-    tFall3 = ((tOb1+tOb2)/2)*BR_FALL3;
+    tFall1 = ((tOb1+tOb2)/2)*BR_FALL0;
+    tFall2 = ((tOb1+tOb2)/2)*BR_FALL1;
+    tFall3 = ((tOb1+tOb2)/2)*BR_FALL2;
     tOb1ValEdit_->setText(QString::number(tOb1));
     tOb2ValEdit_->setText(QString::number(tOb2));
     tFall1Edit_->setText(QString::number(tFall1));
@@ -241,15 +246,16 @@ void Window::targetClicked()
     double curVal = tCurrentValEdit_->text().toDouble();
     double curR1Val = 0,curR2Val = 0;
     double curCb1Val = 0,curCb2Val = 0;
-    double curFall0Val = 0,curFall1Val = 0,curFall2Val = 0,curFall3Val = 0;
+    double curFall0Val = 0,curFall1Val = 0,curFall2Val = 0,curFall3Val = 0,curFall4Val = 0;
     curR1Val = curVal*BR_RISE1;
     curR2Val = curVal*BR_RISE2;
     curCb1Val = curVal*BR_CB1;
     curCb2Val = curVal*BR_CB2;
-    curFall0Val = curVal*BR_FALL1;
-    curFall1Val = curVal*BR_FALL2;
-    curFall2Val = curVal*BR_FALL3;
-    curFall3Val = curVal*BR_FALL4;
+    curFall0Val = curVal*BR_FALL0;
+    curFall1Val = curVal*BR_FALL1;
+    curFall2Val = curVal*BR_FALL2;
+    curFall3Val = curVal*BR_FALL3;
+    curFall4Val = curVal*BR_FALL4;
     tR1ValEdit_->setText(QString::number(curR1Val));
     tR2ValEdit_->setText(QString::number(curR2Val));
     tCb1ValEdit_->setText(QString::number(curCb1Val));
@@ -258,6 +264,7 @@ void Window::targetClicked()
     tFall1ValEdit_->setText(QString::number(curFall1Val));
     tFall2ValEdit_->setText(QString::number(curFall2Val));
     tFall3ValEdit_->setText(QString::number(curFall3Val));
+    tFall4ValEdit_->setText(QString::number(curFall4Val));
     /********************************************************/
 }
 

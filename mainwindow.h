@@ -87,6 +87,7 @@ private:
     QLineEdit *tFall1ValEdit_;
     QLineEdit *tFall2ValEdit_;
     QLineEdit *tFall3ValEdit_;
+    QLineEdit *tFall4ValEdit_;
 };
 //! [0]
 
