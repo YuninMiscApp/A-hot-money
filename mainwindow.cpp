@@ -250,11 +250,11 @@ void Window::targetClicked()
     tFall3 = ((tOb1+tOb2)/2)*BR_FALL2;
 
     QString obStr = "T=";
-    obStr += QString::number(lowestVal);
+    obStr += QString::number(lowestVal).mid(0,5);
     obStr += "->";
-    obStr += QString::number(tOb1);
+    obStr += QString::number(tOb1).mid(0,5);
     obStr += "->";
-    obStr += QString::number(tOb2);
+    obStr += QString::number(tOb2).mid(0,5);
     tOb1ValEdit_->setText(obStr);
     tOb2ValEdit_->setText(obStr);
     tFall1Edit_->setText(QString::number(tFall1));
@@ -285,25 +285,25 @@ void Window::targetClicked()
     tFall4ValEdit_->setText(QString::number(curFall4Val));
     /********************************************************/
     QString riseStr = "T=";
-    riseStr += QString::number(curVal) ;
+    riseStr += QString::number(curVal).mid(0,5);
     riseStr += "->";
-    riseStr += QString::number(curR1Val) ;
+    riseStr += QString::number(curR1Val).mid(0,5);
     riseStr += "->";
-    riseStr += QString::number(curR2Val);
+    riseStr += QString::number(curR2Val).mid(0,5);
     tRValEdit_->setText(riseStr);
     //
     QString fallStr = "T=";
-    fallStr += QString::number(curVal) ;
+    fallStr += QString::number(curVal).mid(0,5);
     fallStr += "->";
-    fallStr += QString::number(curFall0Val) ;
+    fallStr += QString::number(curFall0Val).mid(0,5);
     fallStr += "->";
-    fallStr += QString::number(curFall1Val) ;
+    fallStr += QString::number(curFall1Val).mid(0,5);
     fallStr += "->";
-    fallStr += QString::number(curFall2Val) ;
+    fallStr += QString::number(curFall2Val).mid(0,5);
     fallStr += "->";
-    fallStr += QString::number(curFall3Val) ;
+    fallStr += QString::number(curFall3Val).mid(0,5);
     fallStr += "->";
-    fallStr += QString::number(curFall4Val) ;
+    fallStr += QString::number(curFall4Val).mid(0,5);
     tFallValEdit_->setText(fallStr);
 }
 
