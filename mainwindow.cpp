@@ -107,23 +107,23 @@ Window::Window(QWidget *parent)
     {
         //[目标价1]
         QLabel *targetMinLabel = new QLabel(tr("目标价1(4.45):"));
-        EDIT_FUNC(tOb1ValEdit_,"0",true,15,"color:red;");
+        EDIT_FUNC(tOb1ValEdit_,"0",true,32,"color:red;");
         //[目标价2]
         QLabel *targetMaxLabel = new QLabel(tr("目标价2(5.76):"));
-        EDIT_FUNC(tOb2ValEdit_,"0",true,15,"color:purple;");
+        EDIT_FUNC(tOb2ValEdit_,"0",true,32,"color:purple;");
         //[暴跌价1]
         QLabel *fallVal1Label = new QLabel(tr("暴跌价1(0.7):"));
-        EDIT_FUNC(tFall1Edit_,"0",true,15,"color:aqua;");
+        EDIT_FUNC(tFall1Edit_,"0",true,32,"color:aqua;");
         //[暴跌价2]
         QLabel *fallVal2Label = new QLabel(tr("暴跌价2(0.49):"));
-        EDIT_FUNC(tFall2Edit_,"0",true,15,"color:green;");
+        EDIT_FUNC(tFall2Edit_,"0",true,32,"color:green;");
         //[暴跌价3]
         QLabel *fallVal3Label = new QLabel(tr("暴跌价3(0.343):"));
-        EDIT_FUNC(tFall3Edit_,"0",true,15,"color:blue;");
+        EDIT_FUNC(tFall3Edit_,"0",true,32,"color:blue;");
 
         //[最低价]
         QLabel *lowestValLabel = new QLabel(tr("请输入最低价:"));
-        EDIT_FUNC(lowestValEdit_,"",false,15,"color:orange;");
+        EDIT_FUNC(lowestValEdit_,"",false,32,"color:orange;");
 
         //[-----------------]
         QGridLayout *targetLayout = new QGridLayout;
@@ -141,37 +141,43 @@ Window::Window(QWidget *parent)
     {
         //[上升价1]
         QLabel *r1ValLabel = new QLabel(tr("上升价1(1.7):"));
-        EDIT_FUNC(tR1ValEdit_,"0",true,15,"color:red;");
+        EDIT_FUNC(tR1ValEdit_,"0",true,32,"color:red;");
         //[上升价2]
         QLabel *r2ValLabel = new QLabel(tr("上升价2(2.2):"));
-        EDIT_FUNC(tR2ValEdit_,"0",true,15,"color:purple;");
+        EDIT_FUNC(tR2ValEdit_,"0",true,32,"color:purple;");
 
         //[回调价1]
         QLabel *cb1ValLabel = new QLabel(tr("回调价1(0.95):"));
-        EDIT_FUNC(tCb1ValEdit_,"0",true,15,"color:aqua;");
+        EDIT_FUNC(tCb1ValEdit_,"0",true,32,"color:aqua;");
         //[回调价2]
         QLabel *cb2ValLabel = new QLabel(tr("回调价2(0.88):"));
-        EDIT_FUNC(tCb2ValEdit_,"0",true,15,"color:green;");
+        EDIT_FUNC(tCb2ValEdit_,"0",true,32,"color:green;");
 
         //[回落价0]
         QLabel *fall0ValLabel = new QLabel(tr("回落价0(0.7):"));
-        EDIT_FUNC(tFall0ValEdit_,"0",true,15,"color:blue;");
+        EDIT_FUNC(tFall0ValEdit_,"0",true,32,"color:blue;");
         //[回落价1]
         QLabel *fall1ValLabel = new QLabel(tr("回落价1(0.49):"));
-        EDIT_FUNC(tFall1ValEdit_,"0",true,15,"color:blue;");
+        EDIT_FUNC(tFall1ValEdit_,"0",true,32,"color:blue;");
         //[回落价2]
         QLabel *fall2ValLabel = new QLabel(tr("回落价2(0.343):"));
-        EDIT_FUNC(tFall2ValEdit_,"0",true,15,"color:blue;");
+        EDIT_FUNC(tFall2ValEdit_,"0",true,32,"color:blue;");
         //[回落价3]
         QLabel *fall3ValLabel = new QLabel(tr("回落价3(0.24):"));
-        EDIT_FUNC(tFall3ValEdit_,"0",true,15,"color:blue;");
+        EDIT_FUNC(tFall3ValEdit_,"0",true,32,"color:blue;");
         //[回落价4]
         QLabel *fall4ValLabel = new QLabel(tr("回落价4(0.168):"));
-        EDIT_FUNC(tFall4ValEdit_,"0",true,15,"color:blue;");
+        EDIT_FUNC(tFall4ValEdit_,"0",true,32,"color:blue;");
 
         //[当前价]
         QLabel *curValLabel = new QLabel(tr("请输入当前价:"));
-        EDIT_FUNC(tCurrentValEdit_,"",false,15,"color:orange;");
+        EDIT_FUNC(tCurrentValEdit_,"",false,32,"color:orange;");
+
+        //[统计信息]
+        QLabel *riseStatLabel = new QLabel(tr("上涨统计信息:"));
+        EDIT_FUNC(tRValEdit_,"",true,128,"color:red;");
+        QLabel *fallStatLabel = new QLabel(tr("下跌统计信息:"));
+        EDIT_FUNC(tFallValEdit_,"",true,128,"color:green;");
 
         //[-----------------]
         QGridLayout *currentLayout = new QGridLayout;
@@ -186,7 +192,12 @@ Window::Window(QWidget *parent)
         TARGET_LAYOUT_FUNC(currentLayout,fall3ValLabel,"color:blue;",tFall3ValEdit_,7);
         TARGET_LAYOUT_FUNC(currentLayout,fall4ValLabel,"color:blue;",tFall4ValEdit_,8);
 
-        TARGET_LAYOUT_FUNC(currentLayout,curValLabel,"color:orange;",tCurrentValEdit_,9);
+        TARGET_LAYOUT_FUNC(currentLayout,riseStatLabel,"color:red;",tRValEdit_,9);
+        TARGET_LAYOUT_FUNC(currentLayout,fallStatLabel,"color:green;",tFallValEdit_,10);
+
+        TARGET_LAYOUT_FUNC(currentLayout,curValLabel,"color:orange;",tCurrentValEdit_,11);
+
+
         currentGroup->setLayout(currentLayout);
     }
 
@@ -227,7 +238,7 @@ Window::~Window()
 
 void Window::targetClicked()
 {
-    //QMessageBox::about(NULL, "A游资", "发财-虎虎生威!!!");
+    //QMessageBox::about(NULL, "A游资", "发财-牛气冲天!!!");
     /********************************************************/
     double lowestVal = lowestValEdit_->text().toDouble();
     double tOb1 = 0,tOb2 = 0;
@@ -237,8 +248,15 @@ void Window::targetClicked()
     tFall1 = ((tOb1+tOb2)/2)*BR_FALL0;
     tFall2 = ((tOb1+tOb2)/2)*BR_FALL1;
     tFall3 = ((tOb1+tOb2)/2)*BR_FALL2;
-    tOb1ValEdit_->setText(QString::number(tOb1));
-    tOb2ValEdit_->setText(QString::number(tOb2));
+
+    QString obStr = "T=";
+    obStr += QString::number(lowestVal);
+    obStr += "->";
+    obStr += QString::number(tOb1);
+    obStr += "->";
+    obStr += QString::number(tOb2);
+    tOb1ValEdit_->setText(obStr);
+    tOb2ValEdit_->setText(obStr);
     tFall1Edit_->setText(QString::number(tFall1));
     tFall2Edit_->setText(QString::number(tFall2));
     tFall3Edit_->setText(QString::number(tFall3));
@@ -266,5 +284,26 @@ void Window::targetClicked()
     tFall3ValEdit_->setText(QString::number(curFall3Val));
     tFall4ValEdit_->setText(QString::number(curFall4Val));
     /********************************************************/
+    QString riseStr = "T=";
+    riseStr += QString::number(curVal) ;
+    riseStr += "->";
+    riseStr += QString::number(curR1Val) ;
+    riseStr += "->";
+    riseStr += QString::number(curR2Val);
+    tRValEdit_->setText(riseStr);
+    //
+    QString fallStr = "T=";
+    fallStr += QString::number(curVal) ;
+    fallStr += "->";
+    fallStr += QString::number(curFall0Val) ;
+    fallStr += "->";
+    fallStr += QString::number(curFall1Val) ;
+    fallStr += "->";
+    fallStr += QString::number(curFall2Val) ;
+    fallStr += "->";
+    fallStr += QString::number(curFall3Val) ;
+    fallStr += "->";
+    fallStr += QString::number(curFall4Val) ;
+    tFallValEdit_->setText(fallStr);
 }
 
