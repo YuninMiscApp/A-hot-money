@@ -262,9 +262,10 @@ void Window::targetClicked()
     tFall3Edit_->setText(QString::number(tFall3));
     /********************************************************/
     double curVal = tCurrentValEdit_->text().toDouble();
-    double curR1Val = 0,curR2Val = 0;
+    double curR0Val = 0,curR1Val = 0,curR2Val = 0;
     double curCb1Val = 0,curCb2Val = 0;
     double curFall0Val = 0,curFall1Val = 0,curFall2Val = 0,curFall3Val = 0,curFall4Val = 0;
+    curR0Val = curVal + curVal*0.1;
     curR1Val = curVal*BR_RISE1;
     curR2Val = curVal*BR_RISE2;
     curCb1Val = curVal*BR_CB1;
@@ -286,6 +287,9 @@ void Window::targetClicked()
     /********************************************************/
     QString riseStr = "T=";
     riseStr += QString::number(curVal).mid(0,5);
+    riseStr += "[";
+    riseStr += QString::number(curR0Val).mid(0,5);
+    riseStr += "]";
     riseStr += "->";
     riseStr += QString::number(curR1Val).mid(0,5);
     riseStr += "->";
